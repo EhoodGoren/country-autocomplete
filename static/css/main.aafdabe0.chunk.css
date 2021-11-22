@@ -1,0 +1,2 @@
+#search-bar{width:25vw;height:5vh;display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:1fr;grid-column-gap:0;grid-row-gap:0}#country-input{grid-area:1/1/2/9}#clear-btn{grid-area:1/9/2/10}#display-btn{font-size:140%;grid-area:1/10/2/11}.country{width:40vw}.country:hover{background-color:#cccbc6}
+/*# sourceMappingURL=main.aafdabe0.chunk.css.map */
