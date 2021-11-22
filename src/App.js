@@ -4,13 +4,18 @@ import { data } from './data';
 
 export default function App() {
     const [country, setCountry] = useState('');
+    const [inputValue, setInputValue] = useState('');
+
+    useEffect(() => {
+        setInputValue(country)
+    },[country]);
     return (
         <div>
-            <input placeholder='Search a country...'></input>
+            <input onChange={e => setInputValue(e.target.value)} value={inputValue} placeholder='Search a country...' />
             <button>X</button>
             <button>V</button>
             {data.map(country => (
-                <Country name={country.name} code={country.code}/>
+                <Country onClick={() => setCountry(country.name)} name={country.name} code={country.code}/>
             ))}
         </div>
     )
