@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
 import Country from "./Country";
 import { data } from './data';
+import './App.css';
 
 export default function App() {
     const [inputValue, setInputValue] = useState('');
@@ -19,19 +20,19 @@ export default function App() {
 
     const countriesDiv = useRef(null);
     const onListBtnClick = (e) => {
-        e.target.innerText = e.target.innerText === 'V' ? '>' : 'V';
+        e.target.innerText = e.target.innerText === '🠻' ? '🠹' : '🠻';
         const listDisplayed = countriesDiv.current.style.visibility;
         countriesDiv.current.style.visibility = listDisplayed === 'hidden' ?
             'visible':
             'hidden' ;
     }
-
+    
     return (
-        <div>
-            <input onChange={e => setInputValue(e.target.value)} value={inputValue} placeholder='Search a country...' />
-            <button onClick={() => setInputValue('')}>X</button>
-            <button onClick={onListBtnClick}>&gt;</button>
-            <div ref={countriesDiv} id='country-list' style={{visibility: "hidden"}}>
+        <div id='search-bar'>
+            <input id='country-input' onChange={e => setInputValue(e.target.value)} value={inputValue} placeholder='Search a country...' />
+            <button id='clear-btn' className='input-btn' onClick={() => setInputValue('')}>❌</button>
+            <button id='display-btn' className='input-btn' onClick={onListBtnClick}>🠻</button>
+            <div ref={countriesDiv} id='country-list' style={{visibility: "visible"}}>
                 {countryList.map(country => (
                     <Country onClick={() => setInputValue(country.name)} name={country.name} code={country.code}/>
                 ))}
