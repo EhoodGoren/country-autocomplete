@@ -1,11 +1,13 @@
 import React, {useState, useEffect, useRef} from "react";
 import Country from "./Country";
 import { data } from './data';
+import useUpdateLogger from './hooks/useUpdateLogger';
 import './App.css';
 
 export default function App() {
     const [inputValue, setInputValue] = useState('');
     const [countryList, setCountryList] = useState([]);
+    useUpdateLogger(inputValue);
 
     useEffect(() => {
         const matchingCountriesList = data.filter(country => {
