@@ -10,7 +10,6 @@ export default function App() {
         const matchingCountriesList = data.filter(country => {
             return country.name.toLowerCase().includes(inputValue.toLowerCase());
         })
-        console.log(matchingCountriesList);
         setCountryList(matchingCountriesList);
     },[inputValue])
 
@@ -18,14 +17,25 @@ export default function App() {
         setCountryList(data);
     },[])
 
+    const countriesDiv = useRef(null);
+    const onListBtnClick = (e) => {
+        e.target.innerText = e.target.innerText === 'V' ? '>' : 'V';
+        const listDisplayed = countriesDiv.current.style.visibility;
+        countriesDiv.current.style.visibility = listDisplayed === 'hidden' ?
+            'visible':
+            'hidden' ;
+    }
+
     return (
         <div>
             <input onChange={e => setInputValue(e.target.value)} value={inputValue} placeholder='Search a country...' />
-            <button>X</button>
-            <button>V</button>
-            {countryList.map(country => (
-                <Country onClick={() => setInputValue(country.name)} name={country.name} code={country.code}/>
-            ))}
+            <button onClick={() => setInputValue('')}>X</button>
+            <button onClick={onListBtnClick}>&gt;</button>
+            <div ref={countriesDiv} id='country-list' style={{visibility: "hidden"}}>
+                {countryList.map(country => (
+                    <Country onClick={() => setInputValue(country.name)} name={country.name} code={country.code}/>
+                ))}
+            </div>
         </div>
     )
 }
